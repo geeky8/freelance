@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:freelance/detail_screen.dart';
 
@@ -18,8 +19,12 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width / 1.5,
                     height: 160,
-                    child: Image.network(
-                      'https://demo.medrpha.com/images/logo-1.png',
+                    child: CachedNetworkImage(
+                      progressIndicatorBuilder: (context, url, progress) =>
+                          const CircularProgressIndicator(
+                        color: Color(0xffF14844),
+                      ),
+                      imageUrl: 'https://demo.medrpha.com/images/logo-1.png',
                       fit: BoxFit.fill,
                     )),
                 const SizedBox(

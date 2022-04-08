@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:freelance/enums/store_state.dart';
@@ -47,7 +48,18 @@ class DetailScreen extends StatelessWidget {
                   case StoreState.ERROR:
                     return const SizedBox();
                   case StoreState.EMPTY:
-                    return const Center(child: Text('Empty'));
+                    return SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        height: 160,
+                        child: CachedNetworkImage(
+                          progressIndicatorBuilder: (context, url, progress) =>
+                              const CircularProgressIndicator(
+                            color: Color(0xffF14844),
+                          ),
+                          imageUrl:
+                              'https://demo.medrpha.com/images/logo-1.png',
+                          fit: BoxFit.fill,
+                        ));
                 }
               }),
             ),
@@ -79,9 +91,13 @@ class DetailBox extends StatelessWidget {
             SizedBox(
                 width: 50,
                 height: 50,
-                child: Image.network(
+                child: CachedNetworkImage(
                   // 'https://demo.medrpha.com/images/logo-1.png',
-                  'https://superadmin.medrpha.com/allimage/$img',
+                  progressIndicatorBuilder: (context, url, progress) =>
+                      const CircularProgressIndicator(
+                    color: Color(0xffF14844),
+                  ),
+                  imageUrl: 'https://superadmin.medrpha.com/allimage/$img',
                   fit: BoxFit.fill,
                 )),
             Container(
